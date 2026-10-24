@@ -7,7 +7,7 @@ const App = () => {
                     AI Image Enhancer{" "}
                 </h1>
                 <p className="text-lg text-gray-500">
-                    Upload your Image and let AI enhance to in seconds!
+                    Preview an image locally. Enhancement needs a server proxy.
                 </p>
             </div>
 

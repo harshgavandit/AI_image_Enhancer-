@@ -1,12 +1,28 @@
-# React + Vite
+# Image preview frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React/Vite learning interface for choosing an image and previewing it locally. The original image is shown using a browser object URL.
 
-Currently, two official plugins are available:
+Enhancement is unavailable in this frontend-only repository. The previous implementation sent a provider key from the browser; that unsafe request path has been removed. Selecting a file now keeps the local preview and displays a clear message instead of sending an upload or polling an external service.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+A working enhancement feature requires a separately implemented server proxy that owns provider credentials, validates uploads and controls requests. There is no such server in this repository. Putting a key in a `VITE_*` variable would expose it in the browser bundle and does not supply that boundary.
 
-## Expanding the ESLint configuration
+## Run locally
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```powershell
+npm ci
+npm run dev
+```
+
+Open the local Vite URL printed in the terminal and choose an image. The preview remains available; no enhancement result is simulated.
+
+## Offline checks
+
+```powershell
+npm test
+npm run lint
+npm run build
+```
+
+The regression tests replace potential network functions with offline guards and verify zero provider requests and an explicit unavailable error. They do not call a paid image service or establish that enhancement works. The production build can be served with `npm run preview`.
+
+The source credential was removed from the current tip. Historical public copies require revocation or rotation by the account owner; this source change does not establish that revocation has occurred.
